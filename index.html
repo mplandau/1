@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex NBA Courtside</title>
+    <style>
+        /* Modern Executive Layout */
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background-color: #faf7f2; color: #1a202c; }
+
+        /* LIVE TICKER BANNER */
+        .ticker-wrap { background-color: #111111; color: white; padding: 12px 0; border-bottom: 4px solid #ff9f43; }
+        .ticker { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 20px; flex-wrap: wrap; }
+        .game { background-color: #222222; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; border: 1px solid #333333; }
+        .live-dot { color: #ff4d4d; font-weight: 800; }
+        .final-tag { color: #ff9f43; font-size: 0.75rem; margin-left: 4px; }
+        .next-tag { color: #4cd137; font-weight: bold; }
+
+        /* HERO BRAND HEADER */
+        .main-header { text-align: center; background-color: #ffffff; padding: 45px 20px; border-bottom: 1px solid #e2e8f0; }
+        .main-header h1 { margin: 0; font-size: 2.6rem; letter-spacing: -1.5px; color: #111111; }
+        .main-header p { margin: 6px 0 0 0; color: #ff9f43; font-weight: bold; font-size: 1.1rem; }
+
+        /* GRID CONTENT APPARATUS */
+        .container { max-width: 1140px; margin: 35px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 35px; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+
+        /* HEADLINE NEWS CARDS */
+        .news-feed h2 { margin-top: 0; font-size: 1.6rem; color: #111111; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .story-card { background-color: white; border: 1px solid #edf2f7; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); margin-bottom: 25px; }
+        .story-banner { padding: 8px 16px; color: white; font-size: 0.8rem; font-weight: bold; letter-spacing: 0.5px; }
+        .spurs-theme { background: linear-gradient(90deg, #111111, #333333); }
+        .knicks-theme { background: linear-gradient(90deg, #f58426, #006bb6); }
+        .story-body { padding: 20px 25px; }
+        .story-body h3 { margin: 0 0 10px 0; color: #111111; font-size: 1.4rem; }
+        .story-body p { margin: 0; line-height: 1.6; color: #4a5568; font-size: 1.05rem; }
+
+        /* SIDEBAR CARD MATRIX */
+        .sidebar { display: flex; flex-direction: column; gap: 25px; }
+        .sidebar-card { background-color: white; padding: 25px; border-radius: 12px; border: 1px solid #edf2f7; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .sidebar-card h3 { margin-top: 0; color: #111111; font-size: 1.2rem; border-bottom: 2px solid #f7fafc; padding-bottom: 10px; }
+        .help-text { font-size: 0.9rem; color: #718096; margin: 0 0 15px 0; }
+
+        /* INTERACTIVE INPUT FORM */
+        .search-input-group { display: flex; flex-direction: column; gap: 10px; }
+        input { padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem; outline: none; background-color: #f8fafc; }
+        input:focus { border-color: #ff9f43; background-color: white; }
+        button { padding: 12px; background-color: #ff9f43; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        button:hover { background-color: #e67e22; }
+
+        /* DYNAMIC RESPONSE DISPLAY NODES */
+        .result-display-panel { display: none; margin-top: 20px; background-color: #fffbeb; border: 1px solid #fef3c7; padding: 15px; border-radius: 8px; }
+        .result-display-panel h4 { margin: 0 0 8px 0; color: #b45309; font-size: 1.2rem; }
+        .result-display-panel p { margin: 4px 0; font-size: 0.95rem; }
+        .log-quote-box { background-color: white; padding: 10px; border-radius: 6px; border: 1px solid #fde68a; font-style: italic; line-height: 1.4; color: #451a03; }
+        .error-display-panel { display: none; margin-top: 20px; color: #b91c1c; background-color: #fef2f2; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; text-align: center; }
+
+        .info-widget p { font-size: 0.95rem; margin: 10px 0; color: #2d3748; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px; }
+        footer { text-align: center; padding: 30px; background-color: #111111; color: #94a3b8; font-size: 0.85rem; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. LIVE NBA FINALS TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="game"><span class="live-dot">● NBA FINALS</span> SPURS 115 - KNICKS 111 <span class="final-tag">(Game 3)</span></div>
+            <div class="game"><b>SERIES:</b> New York leads 2-1</div>
+            <div class="game"><span class="next-tag">GAME 4</span> Tonight at Madison Square Garden</div>
+        </div>
+    </div>
+
+    <!-- 2. APEX BRAND HEADER -->
+    <header class="main-header">
+        <h1>APEX NBA COURTSIDE</h1>
+        <p>Live Real-Time Coverage of the 2026 NBA Finals</p>
+    </header>
+
+    <!-- 3. CONTENT AREA -->
+    <div class="container">
+        
+        <!-- HEADLINES FEED -->
+        <main class="news-feed">
+            <h2>📰 Featured Finals Headlines</h2>
+            
+            <div class="story-card">
+                <div class="story-banner spurs-theme">🏀 SAN ANTONIO RESPONSE</div>
+                <div class="story-body">
+                    <h3>Wembanyama Silences MSG to Prevent 3-0 Series Hole</h3>
+                    <p>The San Antonio Spurs officially hit back in Game 3 of the [NBA Finals](https://www.nba.com/playoffs/2026/nba-finals), grinding out a massive 115-111 win on the road. Superstar center Victor Wembanyama dominated the interior defense to snap the New York Knicks' historic 13-game playoff win streak.</p>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <div class="story-banner knicks-theme">🏀 NEW YORK CAMP</div>
+                <div class="story-body">
+                    <h3>Knicks Keep Focus Heading Into Pivotal Game 4</h3>
+                    <p>Despite dropping Game 3, head coach Tom Thibodeau's squad maintains a 2-1 series lead. Star point guard Jalen Brunson led a late-game rally, but a clutch closing sequence by the Spurs' backcourt sealed the win for San Antonio.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- INTERACTIVE SEARCH SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>🔍 Search Player Archive Files</h3>
+                <p class="help-text">Type a star player's name to pull their statistics and recent play-by-play timelines instantly.</p>
+                
+                <div class="search-input-group">
+                    <input type="text" id="dbSearch" placeholder="Type Wembanyama, Brunson, or Jordan...">
+                    <button onclick="runArchiveSearch()">Search Database</button>
+                </div>
+
+                <!-- Live Interface Injection Target -->
+                <div id="searchSuccess" class="result-display-panel">
+                    <h4 id="resName">--</h4>
+                    <p><b>Team:</b> <span id="resTeam">--</span></p>
+                    <p><b>Position:</b> <span id="resPos">--</span></p>
+                    <p style="margin-top: 10px; font-weight: bold;">Documented Finals Play Log:</p>
+                    <p id="resLog" class="log-quote-box">--</p>
+                </div>
+                <div id="searchError" class="error-display-panel">❌ No player file found. Try typing 'Wembanyama' or 'Brunson'.</div>
+            </div>
+
+            <!-- ODDS CALCULATOR WIDGET -->
+            <div class="sidebar-card info-widget">
+                <h3>🏆 Series Points Leaders</h3>
+                <p><b>Victor Wembanyama:</b> 29.0 PPG</p>
+                <p><b>Jalen Brunson:</b> 27.3 PPG</p>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; Apex NBA Courtside. Live network data sourced ethically. Sourced from [NBA.com](https://www.nba.com/).</p>
+    </footer>
+
+    <!-- ENGINE LOGIC INJECTED DIRECTLY -->
+    <script>
+        const dynamicSportsDatabase = {
+            "wembanyama": {
+                name: "Victor Wembanyama",
+                team: "San Antonio Spurs",
+                position: "Center / Forward",
+                log: "Finals Game 3: Registers a spectacular 29-point baseline performance along with dominant rim protection to break New York's historic undefeated playoff streak on their home court."
+            },
+            "brunson": {
+                name: "Jalen Brunson",
+                team: "New York Knicks",
+                position: "Point Guard",
+                log: "Finals Game 3: Registers 27.3 PPG average metrics across the series, facilitating a late-game fourth-quarter push before falling short at the buzzer."
+            },
+            "jordan": {
+                name: "Michael Jordan",
+                team: "Chicago Bulls (Historical Retrospective)",
+                position: "Shooting Guard",
+                log: "1998 Finals Game 6: Strips possession from Karl Malone in the final seconds and sinks the iconic 20-foot jumper to claim the championship ring."
+            }
+        };
+
+        function runArchiveSearch() {
+            const userInput = document.getElementById("dbSearch").value.toLowerCase().trim();
+            const panelSuccess = document.getElementById("searchSuccess");
+            const panelError = document.getElementById("searchError");
+
+            panelSuccess.style.display = "none";
+            panelError.style.display = "none";
+
+            if (!userInput) return;
+
+            let targetRecord = null;
